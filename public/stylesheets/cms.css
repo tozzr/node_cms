@@ -1,0 +1,51 @@
+body {
+  margin: 0px;
+  padding: 10px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #ddd;
+}
+
+a {
+  color: #000AA;
+  text-decoration: none;
+}
+a:hover {
+  color: #000;
+}
+
+a.current {
+  color: #0000FF;
+}
+
+ul.navigation {
+  list-style: none;
+}
+
+ul.navigation li {
+  display: inline;
+}
+
+#sitetree {
+  float: left;
+  width: 30%;
+}
+#sitetree ul {
+  list-style: none;
+}
+
+#details {
+  float: right;
+  width: 69%;
+}
+
+#details label {
+  margin-right: 25px;
+  width: 15%;
+  float: left;
+}
+
+#details input, textarea {
+  width: 80%;
+  padding-left: 0%;
+  margin-left: 0%;
+}

@@ -1,0 +1,12 @@
+#sitetree
+	ul
+		- each p in pages
+			li 
+				if p.url == page.url 
+					a(href="/admin/page/"+p._id.toHexString(), class="current")!= p.title
+				else
+					a(href="/admin/page/"+p._id.toHexString())!= p.title
+				
+	a(href='/admin/page/new') create new page
+	br
+	a(href='/') show site
