@@ -1,7 +1,7 @@
 node_cms
 ========
 
-simple cms stack based on nodejs, express and mongodb. feel free to fork and contibute!
+simple cms stack based on nodejs, express and mongodb. feel free to fork and contribute!
 
 install:
 
