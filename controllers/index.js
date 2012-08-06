@@ -1,4 +1,5 @@
 var PageProvider = require('../pageprovider-mongodb').PageProvider;
+var Page = require('../models/page');
 
 var pageProvider = new PageProvider('localhost', 27017);
 
@@ -11,8 +12,6 @@ exports.showPageFromUrl = function(req, res) {
 	}
 	if (url == '')
 		url = 'home';
-	console.log(url_segments.length);
-	console.log('show site: ' + url + '---\n\n');
 	
 	pageProvider.findAllLive( function(error, pages){
 		pageProvider.findByUrl(url, function(error, page) {
@@ -34,52 +33,66 @@ exports.showPageFromUrl = function(req, res) {
 exports.admin = function(req, res) {
 	pageProvider.findAll( function(error, docs){
         res.render('admin.jade', {
-            title: 'Admin', pages: docs, page: { url: '' }
+            title: 'Admin', pages: docs, page: new Page()
         });
     });
 };
 
 exports.showAdminPage = function(req, res) {
 	pageProvider.findAll( function(error, docs) {
-		pageProvider.findById(req.params.id, function (error, page) {
+		pageProvider.findById(req.params.id, function (error, doc) {
 			res.render('admin_page.jade', {
-				title: 'Admin', pages: docs, page: page
+				title: 'Admin', pages: docs, page: doc
 			});
 		});
     });
 };
 
 exports.updateAdminPage = function(req, res) {
-	pageProvider.findById(req.params.id, function (error, page) {
-		page.title = req.body.title;
-		page.url = req.body.url;
-		page.content = req.body.content;
-		page.stage = req.body.stage;
-		page.nr = req.body.nr;
-		pageProvider.update(page, function(error) {
-			res.redirect('/admin/page/' + req.params.id);
-		});
+	pageProvider.findById(req.params.id, function (error, doc) {
+		var page = new Page(doc._id);
+		var errors = page.bindAndValidate(req);
+		
+		if (errors) {
+			console.log('update errors: ' + JSON.stringify(errors) );
+			pageProvider.findAll( function(error, docs) {
+				res.render('admin_page.jade', {
+					title: 'Admin', pages: docs, page: page, errors: errors
+				});
+			});
+		}
+		else {
+			console.log('ready to update');
+			pageProvider.update(page, function(error) {
+				res.redirect('/admin/page/' + req.params.id);
+			});
+		}
 	});
 };
 
 exports.newAdminPage = function(req, res) {
 	pageProvider.findAll( function(error, docs) {
 		res.render('admin_page_new.jade', {
-			title: 'Admin', pages: docs, page: { url: '' }
+			title: 'Admin', pages: docs, page: new Page()
 		});
     });
 };
 
 exports.saveAdminPage = function(req, res) {
-	page = {
-		title: req.body.title,
-		url: req.body.url,
-		content: req.body.content,
-		active: true
+	var page = new Page();
+	var errors = page.bindAndValidate(req);
+	if (errors) {
+		pageProvider.findAll( function(error, docs) {
+			res.render('admin_page_new.jade', {
+				title: 'Admin', pages: docs, page: page
+			});
+		});
 	}
-	pageProvider.save(page, function(error) {
-		res.redirect('/admin/page/' + page._id);
-	});
+	else {
+		pageProvider.save(page, function(error) {
+			res.redirect('/admin/page/' + page._id);
+		});
+	}
 };
 
 exports.deleteAdminPage = function(req, res) {

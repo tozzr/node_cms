@@ -8,43 +8,16 @@ block content
 	#details
 		form(method="post")
 			input(type="hidden", name="_method", value="PUT")
-			label title
-			input(type="text", name="title", value=""+page.title)
-			br
-			br
 			
-			label url
-			input(type="text", name="url", value=""+page.url)
-			br
-			br
+			include page_form
 			
-			label content
-			textarea(name="content", cols=40, rows=5)
-				=page.content || ''
-			br
-			br
-			
-			label stage
-			select(name="stage")
-				if page.stage == 'draft'
-					option(value="draft", selected="selected") draft
-				else
-					option(value="draft") draft
-				if page.stage == 'live'
-					option(value="live", selected="selected") live
-				else
-					option(value="live") live
-			br
-			br
-			
-			label nr
-			input(type="text", name="nr", value=""+page.nr)
-			
-			label= 'action'
-			input(type="submit", value="update")
+			fieldset.action
+				label= 'action'
+				input(type="submit", value="update")
 
 		form(method="post")
-			input(type="hidden", name="_method", value="DELETE")
+			fieldset.action
+				input(type="hidden", name="_method", value="DELETE")
 			
-			label= ''
-			input(type="submit", value="delete")
+				label= ''
+				input(type="submit", value="delete")

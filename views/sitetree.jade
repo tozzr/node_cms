@@ -2,7 +2,7 @@
 	ul
 		- each p in pages
 			li 
-				if p.url == page.url 
+				if p.url == page.url
 					a(href="/admin/page/"+p._id.toHexString(), class="current")!= p.title
 				else
 					a(href="/admin/page/"+p._id.toHexString())!= p.title

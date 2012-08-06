@@ -23,7 +23,7 @@ PageProvider.prototype.findAll = function(callback) {
     this.getCollection(function(error, page_collection) {
       if( error ) callback(error)
       else {
-        page_collection.find().sort({nr: 1}).toArray(function(error, results) {
+        page_collection.find({}, {title: 1, url: 1}).sort({nr: 1}).toArray(function(error, results) {
           if( error ) callback(error)
           else callback(null, results)
         });
@@ -36,7 +36,7 @@ PageProvider.prototype.findAllLive = function(callback) {
     this.getCollection(function(error, page_collection) {
       if( error ) callback(error)
       else {
-        page_collection.find({stage: 'live'}).sort({nr: 1}).toArray(function(error, results) {
+        page_collection.find({stage: 'live'}, {_id: 1, title: 1, url: 1}).sort({nr: 1}).toArray(function(error, results) {
           if( error ) callback(error)
           else callback(null, results)
         });
@@ -88,12 +88,15 @@ PageProvider.prototype.save = function(pages, callback) {
 //update
 PageProvider.prototype.update = function(page, callback) {
     this.getCollection(function(error, page_collection) {
-      if( error ) callback(error)
-      else {
-        page_collection.update({ _id: page._id }, { $set: { title: page.title, url: page.url, content: page.content, stage: page.stage, nr: page.nr }}, function() {
-          callback(null);
-        });
-      }
+		if( error ) callback(error)
+		else {
+			page_collection.update({ _id: page._id }, { 
+				$set: { title: page.title, url: page.url, content: page.content, stage: page.stage, nr: page.nr }
+			}, 
+			function() {
+				callback(null);
+			});
+		}
     });
 };
 

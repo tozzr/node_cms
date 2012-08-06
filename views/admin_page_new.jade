@@ -7,21 +7,9 @@ block content
 
 	#details
 		form( method="post")
-			label title
-			input(type="text", name="title", value="")
-			br
-			br
 			
-			label url
-			input(type="text", name="url", value="")
-			br
-			br
+			include page_form
 			
-			label content
-			textarea(name="content", cols=40, rows=5)
-				= ''
-			br
-			br
-			
-			label= 'action'
-			input(type="submit", value="create site")
+			fieldset.action
+				label= 'action'
+				input(type="submit", value="create site")

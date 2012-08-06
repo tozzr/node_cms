@@ -49,3 +49,12 @@ ul.navigation li {
   padding-left: 0%;
   margin-left: 0%;
 }
+
+fieldset.action {
+	border: none;
+	margin: 0px;
+	padding: 0px;
+}
+#details fieldset.action input {
+	width: auto;
+}
