@@ -81,10 +81,11 @@ exports.newAdminPage = function(req, res) {
 exports.saveAdminPage = function(req, res) {
 	var page = new Page();
 	var errors = page.bindAndValidate(req);
+	
 	if (errors) {
 		pageProvider.findAll( function(error, docs) {
 			res.render('admin_page_new.jade', {
-				title: 'Admin', pages: docs, page: page
+				title: 'Admin', pages: docs, page: page, errors: errors
 			});
 		});
 	}

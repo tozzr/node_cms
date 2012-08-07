@@ -1,3 +1,8 @@
+- if (typeof(errors) != 'undefined')
+	ul.errors
+		each error in errors
+			li= error
+	
 label title
 input(type="text", name="title", value=""+page.title)
 br
