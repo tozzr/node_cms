@@ -3,5 +3,38 @@ html
 	head
 		title= title
 		link(rel='stylesheet', href='/static/stylesheets/cms.css')
+		script(type='text/javascript', src='/static/thirdparty/jquery-ui/js/jquery-1.7.2.min.js')
+		script(type='text/javascript', src='/static/thirdparty/jquery-ui/js/jquery-ui-1.8.22.custom.min.js')
+		script(type='text/javascript', src='/static/thirdparty/tiny_mce/tiny_mce.js')
+		script(type='text/javascript')			
+			tinyMCE.init({
+					mode : "textareas"
+			});
+			$(function() {
+				$( "#sitetree ul" ).sortable({
+					update: function(event, ui) { 
+						var data = {}
+						data.ids = new Array();
+						$(this).children('li').each(function(index) {
+							var link = $(this).children('a');
+							data.ids[index] = $(link).attr('rel');
+						});
+						//alert( JSON.stringify(data) );
+						$.ajax({ url: '/admin/page/sort', type: 'POST', data: data, dataType: 'json', 
+							success: function (result) {
+								//alert( result.status );
+								if (result.status == 'ok') {
+									document.location.href = '';
+								}
+							},
+							error: function(jqXHR, textStatus, errorThrown) {
+								alert(JSON.stringify(jqXHR) + '-' + textStatus + '-' + errorThrown);
+							}
+						});
+					}
+				});
+				$( "#sitetree ul" ).disableSelection();
+			});
+
 	body
 	block content

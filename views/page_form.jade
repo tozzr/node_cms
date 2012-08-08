@@ -14,7 +14,7 @@ br
 br
 
 label content
-textarea(name="content", cols=40, rows=5)
+textarea(name="content", cols=40, rows=10)
 	=page.content || ''
 br
 br
@@ -33,6 +33,6 @@ br
 br
 
 label nr
-input(type="text", name="nr", value=""+page.nr)
+span= page.nr
 br
 br

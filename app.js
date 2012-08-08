@@ -13,8 +13,9 @@ require('./settings.js')(express, app);
 
 app.get('/admin', controllers.admin);
 
+app.post('/admin/page/sort', controllers.sortAdminPages);
+
 app.get('/admin/page/new', controllers.newAdminPage);
-app.post('/admin/page/new', controllers.saveAdminPage);
 
 app.get('/admin/page/:id', controllers.showAdminPage);
 app.put('/admin/page/:id', controllers.updateAdminPage);

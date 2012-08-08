@@ -72,28 +72,12 @@ exports.updateAdminPage = function(req, res) {
 
 exports.newAdminPage = function(req, res) {
 	pageProvider.findAll( function(error, docs) {
-		res.render('admin_page_new.jade', {
-			title: 'Admin', pages: docs, page: new Page()
-		});
-    });
-};
-
-exports.saveAdminPage = function(req, res) {
-	var page = new Page();
-	var errors = page.bindAndValidate(req);
-	
-	if (errors) {
-		pageProvider.findAll( function(error, docs) {
-			res.render('admin_page_new.jade', {
-				title: 'Admin', pages: docs, page: page, errors: errors
-			});
-		});
-	}
-	else {
+		var page = new Page();
+		page.nr = docs.length;
 		pageProvider.save(page, function(error) {
 			res.redirect('/admin/page/' + page._id);
 		});
-	}
+	});
 };
 
 exports.deleteAdminPage = function(req, res) {
@@ -102,4 +86,16 @@ exports.deleteAdminPage = function(req, res) {
 			res.redirect('/admin');
 		});
 	});
+};
+
+exports.sortAdminPages = function(req, res) {
+	var count = req.body.ids.length;
+	for (index in req.body.ids) {
+		var id = req.body.ids[index];
+		pageProvider.updateNr(id, index, function (error) {
+			if (--count <= 0) {
+				res.json(200, {status: 'ok'});
+			}
+		});
+	}
 };

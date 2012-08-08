@@ -91,7 +91,7 @@ PageProvider.prototype.update = function(page, callback) {
 		if( error ) callback(error)
 		else {
 			page_collection.update({ _id: page._id }, { 
-				$set: { title: page.title, url: page.url, content: page.content, stage: page.stage, nr: page.nr }
+				$set: { title: page.title, url: page.url, content: page.content, stage: page.stage }
 			}, 
 			function() {
 				callback(null);
@@ -99,6 +99,22 @@ PageProvider.prototype.update = function(page, callback) {
 		}
     });
 };
+
+//update
+PageProvider.prototype.updateNr = function(id, nr, callback) {
+	this.getCollection(function(error, page_collection) {
+		if( error ) callback(error)
+		else {
+			page_collection.update({ _id: page_collection.db.bson_serializer.ObjectID.createFromHexString(id) }, { 
+				$set: { nr: parseInt(nr) }
+			}, 
+			function() {
+				callback(null);
+			});
+		}
+    });
+};
+
 
 //delete
 PageProvider.prototype.del = function(page, callback) {
