@@ -3,7 +3,7 @@
 /* Allgemein */
 
 body{
-    background-color:#E8E8E8;
+    background:#E8E8E8;
     font-size:14px;
     font-family: 'Gentium Basic', serif;
 }
@@ -57,6 +57,9 @@ h1{
     border-bottom-left-radius: 5px;
 }
 
+#content ul {
+	padding: 15px;
+}
 /* Navigation */
 
 ul#navigation {

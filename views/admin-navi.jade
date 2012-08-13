@@ -1,0 +1,17 @@
+ul#navi
+	li 
+		a(href='/admin') page 
+		a(href='/admin/page/new', title='new page') +
+		br
+		ul#pagetree
+			- each p in pages
+				li 
+					if p.url == page.url
+						a(href="/admin/page/"+p._id.toHexString(), class="current", rel=p._id.toHexString())!= p.title
+					else
+						a(href="/admin/page/"+p._id.toHexString(), rel=p._id.toHexString())!= p.title
+
+	li
+		a(href='/admin/assets') assets
+
+			

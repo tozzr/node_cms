@@ -4,7 +4,6 @@ var Page = require('../models/page');
 var pageProvider = new PageProvider('localhost', 27017);
 
 exports.showPageFromUrl = function(req, res) {
-	console.log(JSON.stringify(req.params));
 	var url_segments = req.params[0].split('/');
 	var url = 'home';
 	if (url_segments.length > 0) {
@@ -98,4 +97,13 @@ exports.sortAdminPages = function(req, res) {
 			}
 		});
 	}
+};
+
+exports.showAssets = function(req, res) {
+	console.log('assets?');
+	pageProvider.findAll( function(error, docs){
+        res.render('admin-assets.jade', {
+            title: 'Admin', pages: docs, page: new Page()
+        });
+    });
 };

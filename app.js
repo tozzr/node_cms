@@ -21,6 +21,8 @@ app.get('/admin/page/:id', controllers.showAdminPage);
 app.put('/admin/page/:id', controllers.updateAdminPage);
 app.del('/admin/page/:id', controllers.deleteAdminPage);
 
+app.get('/admin/assets', controllers.showAssets);
+
 app.get('/static*', function(req, res) {
 	res.sendfile(__dirname + '/public' + req.params[0]);
 });

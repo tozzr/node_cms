@@ -17,44 +17,50 @@ a.current {
   color: #0000FF;
 }
 
-ul.navigation {
-  list-style: none;
-}
-
-ul.navigation li {
-  display: inline;
-}
-
-#sitetree {
+#navi {
   float: left;
-  width: 30%;
+  width: 10%;
+  background-color: #ddd;
 }
-#sitetree ul {
+ul {
+  padding: 0px;
+  margin: 0px;
   list-style: none;
+}
+
+ul li {
+  padding-left: 5px;
+}
+
+ul li ul {
+  margin-left: 15px;
 }
 
 #details {
   float: right;
-  width: 69%;
+  width: 89%;
+  background-color: #ddd;
 }
 
-#details label {
-  margin-right: 25px;
-  width: 15%;
+label {
+  width: 10%;
   float: left;
 }
 
-#details input, textarea {
-  width: 80%;
+input, textarea {
+  width: 89%;
   padding-left: 0%;
   margin-left: 0%;
 }
 
-fieldset.action {
+fieldset {
 	border: none;
+}
+ieldset.action {
 	margin: 0px;
 	padding: 0px;
 }
+
 #details fieldset.action input {
 	width: auto;
 }
@@ -66,4 +72,8 @@ ul.errors {
 	margin: 0px 0px 20px 0px;
 	padding: 15px;
 	list-style: none;
+}
+
+textarea {
+	height: 350px;
 }

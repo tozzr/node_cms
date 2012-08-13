@@ -3,8 +3,8 @@ extends admin-layout
 block content
 	h1= title
 	
-	include sitetree
-		
+	include admin-navi
+			
 	#details
 		form(method="post")
 			input(type="hidden", name="_method", value="PUT")

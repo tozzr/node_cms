@@ -31,8 +31,11 @@ select(name="stage")
 		option(value="live") live
 br
 br
-
-label nr
-span= page.nr
-br
-br
+label parent
+select(name="parent")
+	option(value="") none
+	- each p in pages
+		if p._id.toHexString() == page.parent
+			option(value=p._id.toHexString(), selected="selected")= p.title
+		else
+			option(value=p._id.toHexString())= p.title

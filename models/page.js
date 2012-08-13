@@ -5,13 +5,15 @@ var page = function (id) {
 	this.content = 'Edit this content of the new page.';
 	this.stage   = 'draft';
 	this.nr      = -1;
+	this.parent  = null;
 	
 	this.bindAndValidate = function (req) {
-		this.title = req.body.title;
-		this.url = req.body.url;
+		this.title   = req.body.title;
+		this.url     = req.body.url;
 		this.content = req.body.content;
-		this.stage = req.body.stage;
-		this.nr = req.body.nr;
+		this.stage   = req.body.stage;
+		this.nr      = req.body.nr;
+		this.parent  = req.body.parent;
 			
 		var errors = new Object();
 		var errorCount = 0;

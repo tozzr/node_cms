@@ -87,11 +87,13 @@ PageProvider.prototype.save = function(pages, callback) {
 
 //update
 PageProvider.prototype.update = function(page, callback) {
+	console.log( page.parent);
     this.getCollection(function(error, page_collection) {
 		if( error ) callback(error)
 		else {
 			page_collection.update({ _id: page._id }, { 
-				$set: { title: page.title, url: page.url, content: page.content, stage: page.stage }
+				$set: { title: page.title, url: page.url, content: page.content, stage: page.stage, 
+						parent: page.parent == null ? null : page_collection.db.bson_serializer.ObjectID.createFromHexString(page.parent) }
 			}, 
 			function() {
 				callback(null);
