@@ -91,6 +91,8 @@ PageProvider.prototype.update = function(page, callback) {
     this.getCollection(function(error, page_collection) {
 		if( error ) callback(error)
 		else {
+      console.log( JSON.stringify(page) );
+      /**/
 			page_collection.update({ _id: page._id }, { 
 				$set: { title: page.title, url: page.url, content: page.content, stage: page.stage, 
 						parent: page.parent == null ? null : page_collection.db.bson_serializer.ObjectID.createFromHexString(page.parent) }
@@ -98,6 +100,8 @@ PageProvider.prototype.update = function(page, callback) {
 			function() {
 				callback(null);
 			});
+      /**/
+      //callback(null);
 		}
     });
 };

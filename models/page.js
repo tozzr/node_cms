@@ -13,7 +13,7 @@ var page = function (id) {
 		this.content = req.body.content;
 		this.stage   = req.body.stage;
 		this.nr      = req.body.nr;
-		this.parent  = req.body.parent;
+		this.parent  = req.body.parent == 'null' ? null : req.body.parent;
 			
 		var errors = new Object();
 		var errorCount = 0;

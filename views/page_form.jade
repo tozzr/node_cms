@@ -33,7 +33,7 @@ br
 br
 label parent
 select(name="parent")
-	option(value="") none
+	option(value="null") none
 	- each p in pages
 		if p._id.toHexString() == page.parent
 			option(value=p._id.toHexString(), selected="selected")= p.title

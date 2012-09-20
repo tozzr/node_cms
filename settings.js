@@ -9,8 +9,8 @@ module.exports = function (express, app) {
 		app.use(express.cookieParser());
 		app.use(express.session({ secret: 'node_cms' }));
 		app.use(express.methodOverride());
+		app.use('/public', express.static(__dirname + '/public'));
 		app.use(app.router);
-		//app.use(express.static(__dirname + '/public'));
 		app.use(function(err, req, res, next){
 		  // if an error occurs Connect will pass it down
 		  // through these "error-handling" middleware
@@ -22,4 +22,6 @@ module.exports = function (express, app) {
 	app.configure('development', function(){
 		app.use(express.errorHandler());
 	});
+
+	return app;
 };

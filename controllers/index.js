@@ -7,7 +7,7 @@ exports.showPageFromUrl = function(req, res) {
 	var url_segments = req.params[0].split('/');
 	var url = 'home';
 	if (url_segments.length > 0) {
-		url = url_segments[0];
+		url = url_segments[1];
 	}
 	if (url == '')
 		url = 'home';
@@ -61,7 +61,6 @@ exports.updateAdminPage = function(req, res) {
 			});
 		}
 		else {
-			console.log('ready to update');
 			pageProvider.update(page, function(error) {
 				res.redirect('/admin/page/' + req.params.id);
 			});
