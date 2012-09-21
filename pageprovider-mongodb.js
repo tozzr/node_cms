@@ -62,7 +62,7 @@ PageProvider.prototype.findByUrl = function(url, callback) {
     this.getCollection(function(error, page_collection) {
       if( error ) callback(error)
       else {
-        page_collection.findOne({url: url}, function(error, result) {
+        page_collection.findOne({url: url, stage: 'live'}, function(error, result) {
           if( error ) callback(error)
           else callback(null, result)
         });

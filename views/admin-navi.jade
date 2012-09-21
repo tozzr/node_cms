@@ -1,9 +1,9 @@
-ul#navi
+ul
 	li 
 		a(href='/admin') page 
 		a(href='/admin/page/new', title='new page') +
 		br
-		ul#pagetree
+		ul
 			- each p in pages
 				li 
 					if p.url == page.url

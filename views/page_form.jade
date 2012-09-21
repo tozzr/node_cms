@@ -3,39 +3,41 @@
 		each error in errors
 			li= error
 	
-label title
-input(type="text", name="title", value=""+page.title)
-br
-br
+.control-group
+	label.control-label title
+	.controls
+		input(type="text", name="title", value=""+page.title)
 
-label url
-input(type="text", name="url", value=""+page.url)
-br
-br
+.control-group
+	label.control-label url
+	.controls
+		input(type="text", name="url", value=""+page.url)
 
-label content
-textarea(name="content", cols=40, rows=10)
-	=page.content || ''
-br
-br
+.control-group
+	label.control-label content
+	.controls
+		textarea(name="content", cols=40, rows=10)
+			=page.content || ''
 
-label stage
-select(name="stage")
-	if page.stage == 'draft'
-		option(value="draft", selected="selected") draft
-	else
-		option(value="draft") draft
-	if page.stage == 'live'
-		option(value="live", selected="selected") live
-	else
-		option(value="live") live
-br
-br
-label parent
-select(name="parent")
-	option(value="null") none
-	- each p in pages
-		if p._id.toHexString() == page.parent
-			option(value=p._id.toHexString(), selected="selected")= p.title
-		else
-			option(value=p._id.toHexString())= p.title
+.control-group
+	label.control-label stage
+	.controls
+		select(name="stage")
+			if page.stage == 'draft'
+				option(value="draft", selected="selected") draft
+			else
+				option(value="draft") draft
+			if page.stage == 'live'
+				option(value="live", selected="selected") live
+			else
+				option(value="live") live
+.control-group
+	label.control-label parent
+	.controls
+		select(name="parent")
+			option(value="null") none
+			- each p in pages
+				if p._id.toHexString() == page.parent
+					option(value=p._id.toHexString(), selected="selected")= p.title
+				else
+					option(value=p._id.toHexString())= p.title

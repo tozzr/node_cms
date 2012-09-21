@@ -16,12 +16,6 @@ a:hover {
 a.current {
   color: #0000FF;
 }
-
-#navi {
-  float: left;
-  width: 10%;
-  background-color: #ddd;
-}
 ul {
   padding: 0px;
   margin: 0px;
@@ -36,35 +30,6 @@ ul li ul {
   margin-left: 15px;
 }
 
-#details {
-  float: right;
-  width: 89%;
-  background-color: #ddd;
-}
-
-label {
-  width: 10%;
-  float: left;
-}
-
-input, textarea {
-  width: 89%;
-  padding-left: 0%;
-  margin-left: 0%;
-}
-
-fieldset {
-	border: none;
-}
-ieldset.action {
-	margin: 0px;
-	padding: 0px;
-}
-
-#details fieldset.action input {
-	width: auto;
-}
-
 ul.errors {
 	color: red;
 	border: 1px solid red;
@@ -76,4 +41,5 @@ ul.errors {
 
 textarea {
 	height: 350px;
+  width: 100%;
 }

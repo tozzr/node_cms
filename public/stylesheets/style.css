@@ -1,11 +1,11 @@
-@import url(http://fonts.googleapis.com/css?family=Gentium+Basic);
+@import url(http://fonts.googleapis.com/css?family=Gudea+Basic);
 
 /* Allgemein */
 
 body{
     background:#E8E8E8;
     font-size:14px;
-    font-family: 'Gentium Basic', serif;
+    font-family: 'Gudea Basic', serif;
 }
 
 h1, ul, li, p{
@@ -21,7 +21,6 @@ h1{
     font-size:50px; 
     color: #4A4A4A;
     margin-bottom:13px;
-    text-shadow: 1px 1px #333;
 }
 
 .main-img{

@@ -3,21 +3,31 @@ extends admin-layout
 block content
 	h1= title
 	
-	include admin-navi
-			
-	#details
-		form(method="post")
-			input(type="hidden", name="_method", value="PUT")
-			
-			include page_form
-			
-			fieldset.action
-				label= 'action'
-				input(type="submit", value="update")
+	.container-fluid
+		.row-fliud
+			.span2
+				include admin-navi
+				
+			#details.span10
+				form(method='post', class='form-horizontal')
+					input(type="hidden", name="_method", value="PUT")
+					
+					include page_form
+					
+					.control-group
+						label.control-label= 'action'
+						.controls
+							button(type='submit', class='btn btn-success')= 'update'
+							button(id='deleteButton', type='reset', class='btn btn-danger')= 'delete'
+							script(type='text/javascript')
+								$(function() {
+									$('#deleteButton').click(function(){
+										if (confirm('really?'))
+											$('#deleteForm').submit();
+									});
+								});
+				form(id='deleteForm', method='post', class='form-horizontal')
+					input(type="hidden", name="_method", value="DELETE")
+	
 
-		form(method="post")
-			fieldset.action
-				input(type="hidden", name="_method", value="DELETE")
-			
-				label= ''
-				input(type="submit", value="delete")
+					
