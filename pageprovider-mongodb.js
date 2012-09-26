@@ -13,7 +13,7 @@ PageProvider = function(host, port) {
 
 PageProvider.prototype.getCollection= function(callback) {
   this.db.collection('pages', function(error, page_collection) {
-    if( error ) callback(error);
+    if( error ) callback(error, null);
     else callback(null, page_collection);
   });
 };
@@ -47,10 +47,15 @@ PageProvider.prototype.findAllLive = function(callback) {
 //findById
 PageProvider.prototype.findById = function(id, callback) {
     this.getCollection(function(error, page_collection) {
-      if( error ) callback(error)
+      if( error ) callback(error);
       else {
+        //console.log('id: ' + id + ' - ' + );
+        //var ObjectId = require('mongodb').BSONPure.ObjectID;
+        //page_collection.findOne({_id: ObjectId(id)}, console.log);
         page_collection.findOne({_id: page_collection.db.bson_serializer.ObjectID.createFromHexString(id)}, function(error, result) {
-          if( error ) callback(error)
+          if( error ) {
+            callback(error);
+          }
           else callback(null, result)
         });
       }

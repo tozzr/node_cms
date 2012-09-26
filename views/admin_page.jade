@@ -20,14 +20,29 @@ block content
 							button(type='submit', class='btn btn-success')= 'update'
 							button(id='deleteButton', type='reset', class='btn btn-danger')= 'delete'
 							script(type='text/javascript')
-								$(function() {
+								$(document).ready(function() {
 									$('#deleteButton').click(function(){
-										if (confirm('really?'))
-											$('#deleteForm').submit();
+										$('#dialog').dialog('open');	
+									});
+									$("#dialog").dialog({
+										autoOpen: false,
+										height: 300,
+										modal: true,
+										buttons: {
+											OK: function() {
+												$('#deleteForm').submit();
+												$(this).dialog('close');
+											},
+											Cancel: function() {
+												$(this).dialog('close');
+											}
+										}
 									});
 								});
 				form(id='deleteForm', method='post', class='form-horizontal')
 					input(type="hidden", name="_method", value="DELETE")
-	
+
+			#dialog(title='delete?')
+				p='really?'
 
 					
